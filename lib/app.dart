@@ -10,6 +10,7 @@ import 'package:movie/generated/i18n.dart';
 import 'package:movie/globalbasestate/state.dart';
 import 'package:movie/globalbasestate/store.dart';
 import 'package:movie/views/main_page/page.dart';
+import 'package:movie/views/home_page/page.dart';
 
 import 'actions/timeline.dart';
 
@@ -25,7 +26,8 @@ Future _init() async {
 Future<Widget> createApp() async {
   final AbstractRoutes routes = PageRoutes(
       pages: <String, Page<Object, dynamic>> {
-        'mainpage': MainPagePage()
+        'mainpage': MainPage(),
+        'homePage': HomePage(),
       },
       visitor: (String path, Page<Object, dynamic> page) {
         if (page.isTypeof<GlobalBaseState>()) {
@@ -76,7 +78,7 @@ Future<Widget> createApp() async {
   await _init();
 
   return MaterialApp(
-    title: 'Movie',
+    title: '电影',
     debugShowCheckedModeBanner: false,
     theme: _lightTheme,
     darkTheme: _darkTheme,
@@ -88,10 +90,10 @@ Future<Widget> createApp() async {
     ],
     supportedLocales: I18n.delegate.supportedLocales,
     localeResolutionCallback:
-      I18n.delegate.resolution(fallback: new Locale("en", "US")),
+      I18n.delegate.resolution(fallback: new Locale("zh", "CN")),
     home: routes.buildPage('mainpage', {
       'pages': List<Widget>.unmodifiable([
-        //routes.buildPage('homePage', null),
+        routes.buildPage('homePage', null),
       ])
     }),
     onGenerateRoute: (RouteSettings settings) {
