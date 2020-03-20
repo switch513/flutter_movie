@@ -2,23 +2,20 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:movie/models/video_list.dart';
 import 'package:movie/views/home_page/state.dart';
 
-
 class HeaderState implements Cloneable<HeaderState> {
   VideoListModel movie;
   VideoListModel tv;
   bool showHeaderMovie;
-
   @override
   HeaderState clone() {
     return HeaderState()
       ..movie = movie
-    ..tv = tv
-    ..showHeaderMovie = showHeaderMovie;
+      ..tv = tv
+      ..showHeaderMovie = showHeaderMovie;
   }
 }
 
 class HeaderConnector extends ConnOp<HomePageState, HeaderState> {
-
   @override
   HeaderState get(HomePageState state) {
     HeaderState mstate = HeaderState();
@@ -32,10 +29,4 @@ class HeaderConnector extends ConnOp<HomePageState, HeaderState> {
   void set(HomePageState state, HeaderState subState) {
     state.showHeaderMovie = subState.showHeaderMovie;
   }
-
-
-}
-
-HeaderState initState(Map<String, dynamic> args) {
-  return HeaderState();
 }

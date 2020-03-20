@@ -1,5 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 
+import 'components/header_component/component.dart';
+import 'components/header_component/state.dart';
 import 'package:movie/customwidgets/custom_stfstate.dart';
 import 'effect.dart';
 import 'reducer.dart';
@@ -17,6 +19,7 @@ class HomePage extends Page<HomePageState, Map<String, dynamic>> {
             dependencies: Dependencies<HomePageState>(
                 adapter: null,
                 slots: <String, Dependent<HomePageState>>{
+                  'header': HeaderConnector() + HeaderComponent(),
                 }),
             middleware: <Middleware<HomePageState>>[
             ],);

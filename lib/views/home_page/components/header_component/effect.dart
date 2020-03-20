@@ -8,5 +8,4 @@ Effect<HeaderState> buildEffect() {
   });
 }
 
-void _onAction(Action action, Context<HeaderState> ctx) {
-}
+void _onAction(Action action, Context<HeaderState> ctx) {}
