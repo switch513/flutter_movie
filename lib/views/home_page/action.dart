@@ -7,6 +7,7 @@ import 'package:movie/models/enums/media_type.dart';
 enum HomePageAction {
   action,
   initMovie,
+  initTV,
   cellTapped,
   searchBarTapped,
 }
@@ -18,6 +19,10 @@ class HomePageActionCreator {
 
   static Action onInitMovie(VideoListModel movie) {
     return Action(HomePageAction.initMovie, payload: movie);
+  }
+
+  static Action onInitTV(VideoListModel tv) {
+    return Action(HomePageAction.initTV, payload: tv);
   }
 
   static Action onSearchBarTapped() {

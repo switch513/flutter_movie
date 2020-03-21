@@ -23,7 +23,7 @@ Widget buildView(
         fontSize: Adapt.px(40),
         fontWeight: FontWeight.bold);
     var _unselectTextStyle =
-        TextStyle(color: Colors.grey, fontSize: Adapt.px(40));
+    TextStyle(color: Colors.grey, fontSize: Adapt.px(40));
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
         child: Row(
@@ -144,19 +144,19 @@ Widget buildView(
             children: _model.results.length > 0
                 ? _model.results.map(_buildHeaderListCell).toList()
                 : <Widget>[
-                    SizedBox(
-                      width: Adapt.px(30),
-                    ),
-                    _buildShimmerHeaderCell(),
-                    SizedBox(
-                      width: Adapt.px(30),
-                    ),
-                    _buildShimmerHeaderCell(),
-                    SizedBox(
-                      width: Adapt.px(30),
-                    ),
-                    _buildShimmerHeaderCell(),
-                  ]),
+              SizedBox(
+                width: Adapt.px(30),
+              ),
+              _buildShimmerHeaderCell(),
+              SizedBox(
+                width: Adapt.px(30),
+              ),
+              _buildShimmerHeaderCell(),
+              SizedBox(
+                width: Adapt.px(30),
+              ),
+              _buildShimmerHeaderCell(),
+            ]),
       ),
     );
   }

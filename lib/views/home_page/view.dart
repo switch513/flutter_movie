@@ -18,20 +18,28 @@ Widget buildView(HomePageState state, Dispatch dispatch, ViewService viewService
         return GestureDetector(
           onTap: () => dispatch(HomePageActionCreator.onSearchBarTapped()),
           child: Container(
-            padding: EdgeInsets.only(left: Adapt.px(30), right: Adapt.px(30)),
-            height: Adapt.px(70),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Adapt.px(40)),
-              color: Color.fromRGBO(57, 57, 57, 1),
-            ),
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.search, color: Colors.grey,),
-                SizedBox(width: Adapt.px(20),),
-                Text(I18n.of(viewService.context).searchbartxt, style: TextStyle(color: Colors.grey, fontSize: Adapt.px(28)),)
-              ],
-            ),
-          ),
+              padding: EdgeInsets.only(left: Adapt.px(30), right: Adapt.px(30)),
+              height: Adapt.px(70),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Adapt.px(40)),
+                color: Color.fromRGBO(57, 57, 57, 1),
+              ),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
+                    width: Adapt.px(20),
+                  ),
+                  Text(
+                    I18n.of(viewService.context).searchbartxt,
+                    style:
+                    TextStyle(color: Colors.grey, fontSize: Adapt.px(28)),
+                  )
+                ],
+              )),
         );
       }
 
