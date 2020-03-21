@@ -423,36 +423,36 @@ class __ResultListState extends State<_ResultList> {
                               fontSize: Adapt.px(30)),
                         ),
                       ),
-                      s.mediaType != 'person'
-                          ? Container(
-                        width: Adapt.screenW() - Adapt.px(320),
-                        child: Text(
-                          s.overview ?? 'no description',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 7,
-                          style: TextStyle(
-                              fontSize: Adapt.px(26), wordSpacing: 1.2),
-                        ),
-                      )
-                          : Container(
-                          width: Adapt.screenW() - Adapt.px(320),
-                          child: Wrap(
-                            spacing: Adapt.px(10),
-                            children: s.knownFor.map((d) {
-                              return Chip(
-                                backgroundColor: Colors.grey[200],
-                                label: Text(
-                                  d.title ?? '',
-                                  style: TextStyle(fontSize: Adapt.px(24)),
-                                ),
-                              );
-                            }).toList(),
-                          )),
                     ],
                   ),
                   SizedBox(
                     height: Adapt.px(10),
                   ),
+                  s.mediaType != 'person'
+                      ? Container(
+                    width: Adapt.screenW() - Adapt.px(320),
+                    child: Text(
+                      s.overview ?? 'no description',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 7,
+                      style: TextStyle(
+                          fontSize: Adapt.px(26), wordSpacing: 1.2),
+                    ),
+                  )
+                      : Container(
+                      width: Adapt.screenW() - Adapt.px(320),
+                      child: Wrap(
+                        spacing: Adapt.px(10),
+                        children: s.knownFor.map((d) {
+                          return Chip(
+                            backgroundColor: Colors.grey[200],
+                            label: Text(
+                              d.title ?? '',
+                              style: TextStyle(fontSize: Adapt.px(24)),
+                            ),
+                          );
+                        }).toList(),
+                      )),
                 ],
               )
             ],
