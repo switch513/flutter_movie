@@ -535,7 +535,7 @@ class ApiHelper {
   }
 
   static Future<SearchResultModel> searchMulit(String query,
-      {int page = 1, bool searchadult = false}) async {
+      {int page = 1, bool searchadult = true}) async {
     SearchResultModel model;
     String param =
         '/search/multi?api_key=$_apikey&query=$query&page=$page&include_adult=$includeAdult&language=$language';

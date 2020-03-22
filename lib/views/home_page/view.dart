@@ -18,7 +18,7 @@ Widget buildView(HomePageState state, Dispatch dispatch, ViewService viewService
         return GestureDetector(
           onTap: () => dispatch(HomePageActionCreator.onSearchBarTapped()),
           child: Container(
-              padding: EdgeInsets.only(left: Adapt.px(30), right: Adapt.px(30)),
+              padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
               height: Adapt.px(70),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Adapt.px(40)),
@@ -61,7 +61,7 @@ Widget buildView(HomePageState state, Dispatch dispatch, ViewService viewService
               dragStartBehavior: DragStartBehavior.down,
               physics: ClampingScrollPhysics(),
               children: <Widget>[
-                //viewService.buildComponent('swiper'),
+                viewService.buildComponent('swiper'),
               ],
             ),
           ),

@@ -16,7 +16,7 @@ class BackDrop extends StatefulWidget {
 class _BackDropState extends State<BackDrop> with TickerProviderStateMixin {
   bool isRun;
   AnimationController _animationController;
-  Color _fontBackGroundColor;
+  Color _frontBackGroundColor;
   Tween<double> topTween;
   GlobalKey key;
 
@@ -24,7 +24,7 @@ class _BackDropState extends State<BackDrop> with TickerProviderStateMixin {
   void initState() {
     key = GlobalKey();
     isRun = false;
-    _fontBackGroundColor = widget.frontBackGroundColor ?? Colors.white;
+    _frontBackGroundColor = widget.frontBackGroundColor ?? Colors.white;
     topTween = Tween<double>(begin: widget.height, end: 0.0);
     _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 300))..addListener(() {
       setState(() {
@@ -67,7 +67,7 @@ class _BackDropState extends State<BackDrop> with TickerProviderStateMixin {
     super.didUpdateWidget(oldWidget);
     if (widget.frontBackGroundColor != oldWidget.frontBackGroundColor) {
       setState(() {
-        _fontBackGroundColor = widget.frontBackGroundColor ?? Colors.white;
+        _frontBackGroundColor = widget.frontBackGroundColor ?? Colors.white;
       });
     }
   }
@@ -95,8 +95,8 @@ class _BackDropState extends State<BackDrop> with TickerProviderStateMixin {
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: _fontBackGroundColor,
-                        border: Border.all(width: 0.0, color: _fontBackGroundColor),
+                        color: _frontBackGroundColor,
+                        border: Border.all(width: 0.0, color: _frontBackGroundColor),
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(Adapt.px(40)),
                           topRight: Radius.circular(Adapt.px(40)),

@@ -2,6 +2,8 @@ import 'package:fish_redux/fish_redux.dart';
 
 import 'components/header_component/component.dart';
 import 'components/header_component/state.dart';
+import 'components/swiper_component/component.dart';
+import 'components/swiper_component/state.dart';
 import 'package:movie/customwidgets/custom_stfstate.dart';
 import 'effect.dart';
 import 'reducer.dart';
@@ -20,6 +22,7 @@ class HomePage extends Page<HomePageState, Map<String, dynamic>> {
                 adapter: null,
                 slots: <String, Dependent<HomePageState>>{
                   'header': HeaderConnector() + HeaderComponent(),
+                  'swiper': SwiperConnection() + SwiperComponent(),
                 }),
             middleware: <Middleware<HomePageState>>[
             ],);

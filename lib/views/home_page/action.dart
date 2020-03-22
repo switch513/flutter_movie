@@ -8,6 +8,8 @@ enum HomePageAction {
   action,
   initMovie,
   initTV,
+  initPopularMovies,
+  initPopularTVShows,
   cellTapped,
   searchBarTapped,
 }
@@ -23,6 +25,14 @@ class HomePageActionCreator {
 
   static Action onInitTV(VideoListModel tv) {
     return Action(HomePageAction.initTV, payload: tv);
+  }
+
+  static Action onInitPopularMovie(VideoListModel pop) {
+    return Action(HomePageAction.initPopularMovies, payload: pop);
+  }
+
+  static Action onInitPopularTV(VideoListModel pop) {
+    return Action(HomePageAction.initPopularTVShows, payload: pop);
   }
 
   static Action onSearchBarTapped() {

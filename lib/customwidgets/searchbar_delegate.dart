@@ -302,25 +302,25 @@ class __ResultListState extends State<_ResultList> {
   ScrollController scrollController;
   List<SearchResult> results;
   String query;
-  int pageindex;
-  int totalpage;
-  bool isloading;
+  int pageIndex;
+  int totalPage;
+  bool isLoading;
 
   Future loadData() async {
     bool isBottom = scrollController.position.pixels ==
         scrollController.position.maxScrollExtent;
-    if (isBottom && totalpage > pageindex) {
+    if (isBottom && totalPage > pageIndex) {
       setState(() {
-        isloading = true;
+        isLoading = true;
       });
-      pageindex++;
-      var r = await ApiHelper.searchMulit(query, page: pageindex);
+      pageIndex++;
+      var r = await ApiHelper.searchMulit(query, page: pageIndex);
       if (r != null) {
         setState(() {
-          pageindex = r.page;
-          totalpage = r.totalPages;
+          pageIndex = r.page;
+          totalPage = r.totalPages;
           results.addAll(r.results);
-          isloading = false;
+          isLoading = false;
         });
       }
     }
@@ -328,7 +328,7 @@ class __ResultListState extends State<_ResultList> {
 
   Widget _buildFooter() {
     return Offstage(
-        offstage: !isloading,
+        offstage: !isLoading,
         child: Container(
           height: Adapt.px(80),
           alignment: Alignment.center,
@@ -341,9 +341,9 @@ class __ResultListState extends State<_ResultList> {
   void initState() {
     results = widget.results;
     query = widget.query;
-    pageindex = 1;
-    totalpage = 2;
-    isloading = false;
+    pageIndex = 1;
+    totalPage = 2;
+    isLoading = false;
     scrollController = ScrollController()..addListener(loadData);
     super.initState();
   }

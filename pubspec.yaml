@@ -54,8 +54,8 @@ dependencies:
 #  screenshot: ^0.1.1
 #  share_extend: ^1.0.9
 #  qr_flutter: ^2.1.0+55
-#  flutter_rating_bar: ^3.0.0
-#  flutter_swiper: ^1.1.6
+  flutter_rating_bar: ^3.0.1+1
+  flutter_swiper: ^1.1.6
 #  font_awesome_flutter: ^8.5.0
 #  cloud_firestore: ^0.13.0+1
   firebase_auth: ^0.15.5+2
