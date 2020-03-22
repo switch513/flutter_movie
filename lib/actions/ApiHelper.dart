@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:dio/dio.dart';
 import 'package:movie/actions/request.dart';
 import 'package:movie/models/enums/media_type.dart';
+import 'package:movie/models/enums/time_window.dart';
 import 'package:movie/models/video_list.dart';
 import 'package:movie/models/search_result.dart';
 
@@ -540,6 +541,17 @@ class ApiHelper {
     String param =
         '/search/multi?api_key=$_apikey&query=$query&page=$page&include_adult=$includeAdult&language=$language';
     var r = await _http.request(param, cached: true);
+    if (r != null) model = SearchResultModel(r);
+    return model;
+  }
+
+  static Future<SearchResultModel> getTrending(MediaType type, TimeWindow time,
+      {int page = 1}) async {
+    SearchResultModel model;
+    String param =
+        '/trending/${type.toString().split('.').last}/${time.toString().split('.').last}?api_key=$_apikey&language=$language&page=$page';
+    var r = await _http.request(param,
+        cached: true, cacheDuration: Duration(hours: 1));
     if (r != null) model = SearchResultModel(r);
     return model;
   }

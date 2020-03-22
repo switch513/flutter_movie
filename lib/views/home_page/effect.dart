@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' hide Action;
 import 'package:movie/actions/ApiHelper.dart';
 import 'package:movie/customwidgets/custom_stfstate.dart';
 import 'package:movie/customwidgets/searchbar_delegate.dart';
+import 'package:movie/models/enums/time_window.dart';
 import 'package:movie/models/enums/media_type.dart';
 import 'action.dart';
 import 'state.dart';
@@ -32,6 +33,9 @@ Future _onInit(Action action, Context<HomePageState> ctx) async {
   if (r != null) ctx.dispatch(HomePageActionCreator.onInitMovie(r));
   final s = await ApiHelper.getTVOnTheAir();
   if (s != null) ctx.dispatch(HomePageActionCreator.onInitTV(s));
+  final trending = await ApiHelper.getTrending(MediaType.all, TimeWindow.day);
+  if (trending != null)
+    ctx.dispatch(HomePageActionCreator.initTrending(trending));
 }
 
 void _onDispose(Action action, Context<HomePageState> ctx) {

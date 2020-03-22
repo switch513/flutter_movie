@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:movie/models/video_list.dart';
+import 'package:movie/models/search_result.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -10,6 +11,7 @@ Reducer<HomePageState> buildReducer() {
       HomePageAction.action: _onAction,
       HomePageAction.initMovie: _onInitMovie,
       HomePageAction.initTV: _onInitTV,
+      HomePageAction.initTrending: _onInitTrending,
       HomePageAction.initPopularMovies: _onInitPopularMovie,
       HomePageAction.initPopularTVShows: _onInitPopularTVShows,
     },
@@ -46,5 +48,12 @@ HomePageState _onInitPopularTVShows(HomePageState state, Action action) {
   final VideoListModel model = action.payload ?? null;
   final HomePageState newState = state.clone();
   newState.popularTVShows = model;
+  return newState;
+}
+
+HomePageState _onInitTrending(HomePageState state, Action action) {
+  final SearchResultModel model = action.payload ?? null;
+  final HomePageState newState = state.clone();
+  newState.trending = model;
   return newState;
 }

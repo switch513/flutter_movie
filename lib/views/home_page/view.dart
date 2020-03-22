@@ -62,6 +62,7 @@ Widget buildView(HomePageState state, Dispatch dispatch, ViewService viewService
               physics: ClampingScrollPhysics(),
               children: <Widget>[
                 viewService.buildComponent('swiper'),
+                viewService.buildComponent('trending'),
               ],
             ),
           ),

@@ -9,7 +9,7 @@ class SwiperComponent extends Component<SwiperState> {
   SwiperComponent()
       : super(
     shouldUpdate: (oldState, newState) {
-      return oldState.movie != newState.tv ||
+      return oldState.movie != newState.movie ||
           oldState.tv != newState.tv ||
           oldState.showHeaderMovie != newState.showHeaderMovie;
     },

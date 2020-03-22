@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 
 import 'package:movie/models/video_list.dart';
 import 'package:movie/models/enums/media_type.dart';
+import 'package:movie/models/search_result.dart';
 
 //TODO replace with your own action
 enum HomePageAction {
@@ -12,6 +13,7 @@ enum HomePageAction {
   initPopularTVShows,
   cellTapped,
   searchBarTapped,
+  initTrending,
 }
 
 class HomePageActionCreator {
@@ -41,5 +43,9 @@ class HomePageActionCreator {
 
   static Action onCellTapped(int id, String bgpic, String title, String posterpic, MediaType type) {
     return  Action(HomePageAction.cellTapped, payload: [id, bgpic, title, posterpic, type]);
+  }
+
+  static Action initTrending(SearchResultModel d) {
+    return Action(HomePageAction.initTrending, payload: d);
   }
 }

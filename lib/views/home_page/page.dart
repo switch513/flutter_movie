@@ -1,4 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:movie/views/home_page/components/trending_component/component.dart';
+import 'package:movie/views/home_page/components/trending_component/state.dart';
 
 import 'components/header_component/component.dart';
 import 'components/header_component/state.dart';
@@ -23,6 +25,7 @@ class HomePage extends Page<HomePageState, Map<String, dynamic>> {
                 slots: <String, Dependent<HomePageState>>{
                   'header': HeaderConnector() + HeaderComponent(),
                   'swiper': SwiperConnection() + SwiperComponent(),
+                  'trending': TrendingConnector() + TrendingComponent(),
                 }),
             middleware: <Middleware<HomePageState>>[
             ],);
