@@ -13,9 +13,11 @@ enum HomePageAction {
   initTV,
   initPopularMovies,
   initPopularTVShows,
-  cellTapped,
-  searchBarTapped,
+  moreTapped,
   initTrending,
+  searchBarTapped,
+  cellTapped,
+  trendingMore,
   shareMore,
   initShareMovies,
   initShareTvShows,
@@ -42,16 +44,26 @@ class HomePageActionCreator {
     return Action(HomePageAction.initPopularTVShows, payload: pop);
   }
 
-  static Action onSearchBarTapped() {
-    return const Action(HomePageAction.searchBarTapped);
-  }
-
-  static Action onCellTapped(int id, String bgpic, String title, String posterpic, MediaType type) {
-    return  Action(HomePageAction.cellTapped, payload: [id, bgpic, title, posterpic, type]);
+  static Action onMoreTapped(VideoListModel model, MediaType t) {
+    return Action(HomePageAction.moreTapped, payload: [model, t]);
   }
 
   static Action initTrending(SearchResultModel d) {
     return Action(HomePageAction.initTrending, payload: d);
+  }
+
+  static Action onSearchBarTapped() {
+    return const Action(HomePageAction.searchBarTapped);
+  }
+
+  static Action onCellTapped(
+      int id, String bgpic, String title, String posterpic, MediaType type) {
+    return Action(HomePageAction.cellTapped,
+        payload: [id, bgpic, title, posterpic, type]);
+  }
+
+  static Action onTrendingMore() {
+    return const Action(HomePageAction.trendingMore);
   }
 
   static Action onShareMore() {

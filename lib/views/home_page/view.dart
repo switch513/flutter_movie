@@ -64,6 +64,7 @@ Widget buildView(HomePageState state, Dispatch dispatch, ViewService viewService
                 viewService.buildComponent('swiper'),
                 viewService.buildComponent('trending'),
                 viewService.buildComponent('share'),
+                viewService.buildComponent('popular_poster'),
               ],
             ),
           ),

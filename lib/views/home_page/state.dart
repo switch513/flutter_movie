@@ -17,6 +17,7 @@ class HomePageState implements Cloneable<HomePageState> {
   bool showShareMovie;
   BaseMovieModel shareMovies;
   BaseTvShowModel shareTvShows;
+  bool showPopMovie;
 
   @override
   HomePageState clone() {
@@ -31,22 +32,22 @@ class HomePageState implements Cloneable<HomePageState> {
       ..shareMovies = shareMovies
       ..shareTvShows = shareTvShows
       ..showShareMovie = showShareMovie
+      ..showPopMovie = showPopMovie
       ..showHeaderMovie = showHeaderMovie;
   }
 }
 
 HomePageState initState(Map<String, dynamic> args) {
   var state = HomePageState();
-  state.movie = VideoListModel.fromParams(results: List<VideoListResult>());
-  state.tv = VideoListModel.fromParams(results: List<VideoListResult>());
+  state.movie = new VideoListModel.fromParams(results: List<VideoListResult>());
+  state.tv = new VideoListModel.fromParams(results: List<VideoListResult>());
   state.popularMovies =
   new VideoListModel.fromParams(results: List<VideoListResult>());
   state.popularTVShows =
   new VideoListModel.fromParams(results: List<VideoListResult>());
-  state.showHeaderMovie = true;
-  state.shareMovies = BaseMovieModel.fromParams(data: List<BaseMovie>());
-  state.shareTvShows = BaseTvShowModel.fromParams(data: List<BaseTvShow>());
   state.trending = SearchResultModel.fromParams(results: []);
+  state.showPopMovie = true;
+  state.showHeaderMovie = true;
   state.showShareMovie = true;
   return state;
 }

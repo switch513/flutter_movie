@@ -1,4 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:movie/views/home_page/components/popular_poster_component/component.dart';
+import 'package:movie/views/home_page/components/popular_poster_component/state.dart';
 import 'package:movie/views/home_page/components/share_component/component.dart';
 import 'package:movie/views/home_page/components/share_component/state.dart';
 import 'package:movie/views/home_page/components/trending_component/component.dart';
@@ -29,6 +31,7 @@ class HomePage extends Page<HomePageState, Map<String, dynamic>> {
                   'swiper': SwiperConnection() + SwiperComponent(),
                   'trending': TrendingConnector() + TrendingComponent(),
                   'share': ShareConnectior() + ShareComponent(),
+                  'popular_poster': PopularPosterConnector() + PopularPosterComponent(),
                 }),
             middleware: <Middleware<HomePageState>>[
             ],);

@@ -43,6 +43,10 @@ Future _onInit(Action action, Context<HomePageState> ctx) async {
   final sharetv = await BaseApi.getTvShows(pageSize: 10);
   if (sharetv != null)
     ctx.dispatch(HomePageActionCreator.initShareTvShows(sharetv));
+  final p = await ApiHelper.getPopularMovies();
+  if (p != null) ctx.dispatch(HomePageActionCreator.onInitPopularMovie(p));
+  final t = await ApiHelper.getPopularTVShows();
+  if (t != null) ctx.dispatch(HomePageActionCreator.onInitPopularTV(t));
 }
 
 void _onDispose(Action action, Context<HomePageState> ctx) {
