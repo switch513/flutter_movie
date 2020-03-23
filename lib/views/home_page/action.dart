@@ -3,6 +3,8 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:movie/models/video_list.dart';
 import 'package:movie/models/enums/media_type.dart';
 import 'package:movie/models/search_result.dart';
+import 'package:movie/models/base_api_model/base_movie_model.dart';
+import 'package:movie/models/base_api_model/base_tv_show.dart';
 
 //TODO replace with your own action
 enum HomePageAction {
@@ -14,6 +16,9 @@ enum HomePageAction {
   cellTapped,
   searchBarTapped,
   initTrending,
+  shareMore,
+  initShareMovies,
+  initShareTvShows,
 }
 
 class HomePageActionCreator {
@@ -47,5 +52,17 @@ class HomePageActionCreator {
 
   static Action initTrending(SearchResultModel d) {
     return Action(HomePageAction.initTrending, payload: d);
+  }
+
+  static Action onShareMore() {
+    return const Action(HomePageAction.shareMore);
+  }
+
+  static Action initShareMovies(BaseMovieModel d) {
+    return Action(HomePageAction.initShareMovies, payload: d);
+  }
+
+  static Action initShareTvShows(BaseTvShowModel d) {
+    return Action(HomePageAction.initShareTvShows, payload: d);
   }
 }

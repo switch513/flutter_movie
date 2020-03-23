@@ -63,6 +63,7 @@ Widget buildView(HomePageState state, Dispatch dispatch, ViewService viewService
               children: <Widget>[
                 viewService.buildComponent('swiper'),
                 viewService.buildComponent('trending'),
+                viewService.buildComponent('share'),
               ],
             ),
           ),

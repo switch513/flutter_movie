@@ -5,6 +5,7 @@ import 'package:movie/customwidgets/custom_stfstate.dart';
 import 'package:movie/customwidgets/searchbar_delegate.dart';
 import 'package:movie/models/enums/time_window.dart';
 import 'package:movie/models/enums/media_type.dart';
+import 'package:movie/actions/base_api.dart';
 import 'action.dart';
 import 'state.dart';
 
@@ -36,6 +37,12 @@ Future _onInit(Action action, Context<HomePageState> ctx) async {
   final trending = await ApiHelper.getTrending(MediaType.all, TimeWindow.day);
   if (trending != null)
     ctx.dispatch(HomePageActionCreator.initTrending(trending));
+  final shareMovie = await BaseApi.getMovies(pageSize: 10);
+  if (shareMovie != null)
+    ctx.dispatch(HomePageActionCreator.initShareMovies(shareMovie));
+  final sharetv = await BaseApi.getTvShows(pageSize: 10);
+  if (sharetv != null)
+    ctx.dispatch(HomePageActionCreator.initShareTvShows(sharetv));
 }
 
 void _onDispose(Action action, Context<HomePageState> ctx) {
