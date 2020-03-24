@@ -9,9 +9,7 @@ class ShareComponent extends Component<ShareState> {
   ShareComponent()
       : super(
             shouldUpdate: (oldState, newState) {
-              return oldState.shareMovies != newState.shareMovies ||
-                  oldState.shareTvshows != newState.shareTvshows ||
-                  oldState.showShareMovie != newState.showShareMovie;
+              return oldState.shareMovies != newState.shareMovies;
             },
             clearOnDependenciesChanged: true,
             effect: buildEffect(),

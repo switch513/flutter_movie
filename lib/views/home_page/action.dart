@@ -1,6 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:movie/models/douban/new_movies.dart';
+import 'package:movie/models/douban/us_box.dart';
+import 'package:movie/models/douban/weekly.dart';
 
 import 'package:movie/models/video_list.dart';
+import 'package:movie/models/douban/Theater.dart';
 import 'package:movie/models/enums/media_type.dart';
 import 'package:movie/models/search_result.dart';
 import 'package:movie/models/base_api_model/base_movie_model.dart';
@@ -28,15 +32,15 @@ class HomePageActionCreator {
     return const Action(HomePageAction.action);
   }
 
-  static Action onInitMovie(VideoListModel movie) {
+  static Action onInitMovie(Threater movie) {
     return Action(HomePageAction.initMovie, payload: movie);
   }
 
-  static Action onInitTV(VideoListModel tv) {
+  static Action onInitTV(Threater tv) {
     return Action(HomePageAction.initTV, payload: tv);
   }
 
-  static Action onInitPopularMovie(VideoListModel pop) {
+  static Action onInitPopularMovie(NewMovies pop) {
     return Action(HomePageAction.initPopularMovies, payload: pop);
   }
 
@@ -48,7 +52,7 @@ class HomePageActionCreator {
     return Action(HomePageAction.moreTapped, payload: [model, t]);
   }
 
-  static Action initTrending(SearchResultModel d) {
+  static Action initTrending(Weekly d) {
     return Action(HomePageAction.initTrending, payload: d);
   }
 
@@ -56,10 +60,8 @@ class HomePageActionCreator {
     return const Action(HomePageAction.searchBarTapped);
   }
 
-  static Action onCellTapped(
-      int id, String bgpic, String title, String posterpic, MediaType type) {
-    return Action(HomePageAction.cellTapped,
-        payload: [id, bgpic, title, posterpic, type]);
+  static Action onCellTapped(int id) {
+    return Action(HomePageAction.cellTapped, payload: [id]);
   }
 
   static Action onTrendingMore() {
@@ -70,7 +72,7 @@ class HomePageActionCreator {
     return const Action(HomePageAction.shareMore);
   }
 
-  static Action initShareMovies(BaseMovieModel d) {
+  static Action initShareMovies(UsBox d) {
     return Action(HomePageAction.initShareMovies, payload: d);
   }
 

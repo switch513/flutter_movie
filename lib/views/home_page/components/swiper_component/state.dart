@@ -1,10 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:movie/models/video_list.dart';
 import 'package:movie/views/home_page/state.dart';
+import 'package:movie/models/douban/Theater.dart';
 
 class SwiperState implements Cloneable<SwiperState> {
-  VideoListModel movie;
-  VideoListModel tv;
+  Threater movie;
+  Threater tv;
   bool showHeaderMovie;
 
   @override

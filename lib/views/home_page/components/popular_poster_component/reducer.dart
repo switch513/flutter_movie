@@ -21,6 +21,5 @@ PopularPosterState _onPopularFilterChanged(
     PopularPosterState state, Action action) {
   final bool e = action.payload ?? true;
   final PopularPosterState newState = state.clone();
-  newState.showmovie = e;
   return newState;
 }

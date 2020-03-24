@@ -1,17 +1,14 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:movie/models/douban/new_movies.dart';
 import 'package:movie/models/video_list.dart';
 import '../../state.dart';
 
 class PopularPosterState implements Cloneable<PopularPosterState> {
-  VideoListModel popularMoives;
-  VideoListModel popularTVShows;
-  bool showmovie;
+  NewMovies popularMoives;
   @override
   PopularPosterState clone() {
     return PopularPosterState()
-      ..popularMoives = popularMoives
-      ..popularTVShows = popularTVShows
-      ..showmovie = showmovie;
+      ..popularMoives = popularMoives;
   }
 }
 
@@ -20,13 +17,7 @@ class PopularPosterConnector extends ConnOp<HomePageState, PopularPosterState> {
   PopularPosterState get(HomePageState state) {
     PopularPosterState mstate = PopularPosterState();
     mstate.popularMoives = state.popularMovies;
-    mstate.popularTVShows = state.popularTVShows;
-    mstate.showmovie = state.showPopMovie;
     return mstate;
   }
 
-  @override
-  void set(HomePageState state, PopularPosterState subState) {
-    state.showPopMovie = subState.showmovie;
-  }
 }

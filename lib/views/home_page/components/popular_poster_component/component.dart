@@ -9,9 +9,7 @@ class PopularPosterComponent extends Component<PopularPosterState> {
   PopularPosterComponent()
       : super(
             shouldUpdate: (oldState, newState) {
-              return oldState.popularMoives != newState.popularMoives ||
-                  oldState.popularTVShows != newState.popularTVShows ||
-                  oldState.showmovie != newState.showmovie;
+              return oldState.popularMoives != newState.popularMoives;
             },
             clearOnDependenciesChanged: true,
             effect: buildEffect(),

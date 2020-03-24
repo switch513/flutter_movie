@@ -32,14 +32,13 @@ Widget buildView(ShareState state, Dispatch dispatch, ViewService viewService) {
                   borderRadius: BorderRadius.circular(Adapt.px(15)),
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                          ImageUrl.getUrl(d.photourl, ImageSize.w400)))),
+                      image: CachedNetworkImageProvider(d.subject.images.small))),
             ),
             Container(
               width: Adapt.px(250),
               padding: EdgeInsets.all(Adapt.px(10)),
               child: Text(
-                d.name ?? '',
+                d.subject.title ?? '',
                 maxLines: 2,
                 //textAlign: TextAlign.center,
                 style: TextStyle(
@@ -89,37 +88,10 @@ Widget buildView(ShareState state, Dispatch dispatch, ViewService viewService) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            'New Share',
+            '北美票房排行榜',
             style:
             TextStyle(fontSize: Adapt.px(35), fontWeight: FontWeight.bold),
           ),
-          GestureDetector(
-            onTap: () =>
-                null,
-            child: Row(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () =>
-                      dispatch(ShareActionCreator.onShareFilterChanged(true)),
-                  child: Text(I18n.of(viewService.context).movies,
-                      style: state.showShareMovie
-                          ? _selectPopStyle
-                          : _unselectPopStyle),
-                ),
-                SizedBox(
-                  width: Adapt.px(20),
-                ),
-                GestureDetector(
-                  onTap: () =>
-                      dispatch(ShareActionCreator.onShareFilterChanged(false)),
-                  child: Text(I18n.of(viewService.context).tvShows,
-                      style: state.showShareMovie
-                          ? _unselectPopStyle
-                          : _selectPopStyle),
-                )
-              ],
-            ),
-          )
         ],
       ),
     );
@@ -158,9 +130,7 @@ Widget buildView(ShareState state, Dispatch dispatch, ViewService viewService) {
   }
 
   Widget _buildShareBody() {
-    var model = state.showShareMovie
-        ? (state.shareMovies?.data ?? [])
-        : (state.shareTvshows?.data ?? []);
+    var model = state.shareMovies.subjects;
     return AnimatedSwitcher(
         duration: Duration(milliseconds: 600),
         child: Container(

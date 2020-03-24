@@ -1,10 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:movie/models/video_list.dart';
+import 'package:movie/models/douban/Theater.dart';
 import 'package:movie/views/home_page/state.dart';
 
 class HeaderState implements Cloneable<HeaderState> {
-  VideoListModel movie;
-  VideoListModel tv;
+  Threater movie;
+  Threater tv;
   bool showHeaderMovie;
   @override
   HeaderState clone() {

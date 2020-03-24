@@ -37,7 +37,7 @@ Widget buildView(TrendingState state, Dispatch dispatch, ViewService viewService
 
   Widget _buildTrending() {
     double _size = (Adapt.screenW() - Adapt.px(70)) / 2;
-    Widget _child = state.trending.results.length > 0
+    Widget _child = state.trending.subjects.length > 0
         ? StaggeredGridView.countBuilder(
       key: ValueKey('Trending'),
       physics: NeverScrollableScrollPhysics(),
@@ -49,7 +49,7 @@ Widget buildView(TrendingState state, Dispatch dispatch, ViewService viewService
       crossAxisSpacing: Adapt.px(5),
       itemCount: 3,
       itemBuilder: (BuildContext contxt, int index) {
-        var d = state.trending.results[index];
+        var d = state.trending.subjects[index];
         return GestureDetector(
           onTap: null,
           child: Container(
@@ -59,12 +59,11 @@ Widget buildView(TrendingState state, Dispatch dispatch, ViewService viewService
               color: _theme.primaryColorDark,
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: CachedNetworkImageProvider(ImageUrl.getUrl(
-                      d.backdropPath, ImageSize.w400))
+                  image: CachedNetworkImageProvider(d.subject.images.small)
               ),
             ),
             child: Text(
-              d.title ?? d.name,
+              d.subject.title ?? d.subject.originalTitle,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: Adapt.px(30) / _mediaQuery.textScaleFactor,
@@ -120,7 +119,7 @@ Widget buildView(TrendingState state, Dispatch dispatch, ViewService viewService
   return Column(
     children: <Widget>[
       _buildFrontTitle(
-        'Trending',
+        '口碑榜',
         GestureDetector(
           onTap: null,
           child: Text(

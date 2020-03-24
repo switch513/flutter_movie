@@ -1,9 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:movie/models/douban/weekly.dart';
 import 'package:movie/models/search_result.dart';
 import 'package:movie/views/home_page/state.dart';
 
 class TrendingState implements Cloneable<TrendingState> {
-  SearchResultModel trending;
+  Weekly trending;
 
   @override
   TrendingState clone() {

@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/generated/i18n.dart';
 import 'package:movie/actions/adapt.dart';
+import 'package:movie/models/douban/new_movies.dart';
 import 'package:movie/style/ThemeStyle.dart';
 import 'package:movie/models/video_list.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -45,13 +46,12 @@ Widget buildView(PopularPosterState state, Dispatch dispatch, ViewService viewSe
     );
   }
 
-  Widget _buildCell(VideoListResult d) {
+  Widget _buildCell(NewSubjects d) {
     return Padding(
       key: ValueKey(d.id),
       padding: EdgeInsets.only(left: Adapt.px(30)),
       child: GestureDetector(
-        onTap: () => dispatch(PopularPosterActionCreator.onCellTapped(d.id,
-            d.backdropPath, state.showmovie ? d.title : d.name, d.posterPath)),
+        onTap: null,
         child: Column(
           children: <Widget>[
             Container(
@@ -62,14 +62,13 @@ Widget buildView(PopularPosterState state, Dispatch dispatch, ViewService viewSe
                     borderRadius: BorderRadius.circular(Adapt.px(15)),
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: CachedNetworkImageProvider(
-                            ImageUrl.getUrl(d.posterPath, ImageSize.w400))))),
+                        image: CachedNetworkImageProvider(d.images.small)))),
             Container(
               //alignment: Alignment.bottomCenter,
                 width: Adapt.px(250),
                 padding: EdgeInsets.all(Adapt.px(10)),
                 child: Text(
-                  d.title ?? d.name,
+                  d.title ?? d.originalTitle,
                   maxLines: 2,
                   //textAlign: TextAlign.center,
                   style: TextStyle(
@@ -143,8 +142,8 @@ Widget buildView(PopularPosterState state, Dispatch dispatch, ViewService viewSe
   }
 
   Widget _buildbody() {
-    VideoListModel model =
-    state.showmovie ? state.popularMoives : state.popularTVShows;
+    NewMovies model =
+        state.popularMoives;
     return AnimatedSwitcher(
         transitionBuilder: (widget, animated) {
           return SlideTransition(
@@ -163,8 +162,8 @@ Widget buildView(PopularPosterState state, Dispatch dispatch, ViewService viewSe
             scrollDirection: Axis.horizontal,
             physics: PageScrollPhysics(),
             shrinkWrap: true,
-            children: model.results.length > 0
-                ? (model.results.map(_buildCell).toList()
+            children: model.subjects.length > 0
+                ? (model.subjects.map(_buildCell).toList()
               ..add(_buildMoreCell()))
                 : <Widget>[
               SizedBox(
@@ -191,26 +190,10 @@ Widget buildView(PopularPosterState state, Dispatch dispatch, ViewService viewSe
   return Column(
     children: <Widget>[
       _buildFrontTitel(
-          I18n.of(viewService.context).popular,
+          '新片榜',
           Row(
             children: <Widget>[
-              GestureDetector(
-                onTap: () => dispatch(
-                    PopularPosterActionCreator.onPopularFilterChanged(true)),
-                child: Text(I18n.of(viewService.context).movies,
-                    style:
-                    state.showmovie ? _selectPopStyle : _unselectPopStyle),
-              ),
-              SizedBox(
-                width: Adapt.px(20),
-              ),
-              GestureDetector(
-                onTap: () => dispatch(
-                    PopularPosterActionCreator.onPopularFilterChanged(false)),
-                child: Text(I18n.of(viewService.context).tvShows,
-                    style:
-                    state.showmovie ? _unselectPopStyle : _selectPopStyle),
-              )
+
             ],
           ),
           padding: EdgeInsets.symmetric(horizontal: Adapt.px(30))),

@@ -7,6 +7,7 @@ import 'package:movie/generated/i18n.dart';
 import 'package:movie/models/enums/image_size.dart';
 import 'package:movie/models/enums/media_type.dart';
 import 'package:movie/models/video_list.dart';
+import 'package:movie/models/douban/Theater.dart';
 import 'package:movie/style/themestyle.dart';
 import 'package:movie/views/home_page/action.dart';
 import 'package:shimmer/shimmer.dart';
@@ -32,7 +33,7 @@ Widget buildView(
             InkWell(
               onTap: () =>
                   dispatch(HeaderActionCreator.onHeaderFilterChanged(true)),
-              child: Text(I18n.of(viewService.context).inTheaters,
+              child: Text('正在热映',
                   style: state.showHeaderMovie
                       ? _selectTextStyle
                       : _unselectTextStyle),
@@ -44,7 +45,7 @@ Widget buildView(
               onTap: () =>
                   dispatch(HeaderActionCreator.onHeaderFilterChanged(false)),
               child: Text(
-                I18n.of(viewService.context).onTV,
+                '即将上映',
                 style: state.showHeaderMovie
                     ? _unselectTextStyle
                     : _selectTextStyle,
@@ -54,20 +55,17 @@ Widget buildView(
         ));
   }
 
-  Widget _buildHeaderListCell(VideoListResult f) {
-    String name = f.title ?? f.name;
+  Widget _buildHeaderListCell(Subjects f) {
+    String name = f.title ?? f.originalTitle;
     return Padding(
         key: ValueKey('headercell' + f.id.toString()),
         padding: EdgeInsets.only(left: Adapt.px(30)),
         child: Column(
           children: <Widget>[
             GestureDetector(
-              onTap: () => dispatch(HomePageActionCreator.onCellTapped(
-                  f.id,
-                  f.backdropPath,
-                  name,
-                  f.posterPath,
-                  state.showHeaderMovie ? MediaType.movie : MediaType.tv)),
+              onTap: () {
+
+              },
               child: Container(
                 width: Adapt.px(200),
                 height: Adapt.px(280),
@@ -75,8 +73,7 @@ Widget buildView(
                     color: Color.fromRGBO(57, 57, 57, 1),
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: CachedNetworkImageProvider(
-                            ImageUrl.getUrl(f.posterPath, ImageSize.w300)))),
+                        image: CachedNetworkImageProvider(f.images.small))),
               ),
             ),
             SizedBox(
@@ -141,8 +138,8 @@ Widget buildView(
             key: ValueKey(_model),
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            children: _model.results.length > 0
-                ? _model.results.map(_buildHeaderListCell).toList()
+            children: _model.subjects.length > 0
+                ? _model.subjects.map(_buildHeaderListCell).toList()
                 : <Widget>[
                     SizedBox(
                       width: Adapt.px(30),

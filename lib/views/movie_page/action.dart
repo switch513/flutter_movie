@@ -1,13 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
 
 //TODO replace with your own action
-enum ShareAction {
-  action,
-}
+enum MovieAction { action }
 
-class ShareActionCreator {
+class MovieActionCreator {
   static Action onAction() {
-    return const Action(ShareAction.action);
+    return const Action(MovieAction.action);
   }
-
 }
